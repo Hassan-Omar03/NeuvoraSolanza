@@ -1,3 +1,5 @@
+'use client'
+
 import * as React from 'react'
 import { Slot } from '@radix-ui/react-slot'
 import { cva, type VariantProps } from 'class-variance-authority'
@@ -48,20 +50,22 @@ const itemVariants = cva(
       variant: 'default',
       size: 'default',
     },
-  },
+  }
 )
 
-function Item({
-  className,
-  variant = 'default',
-  size = 'default',
-  asChild = false,
-  ...props
-}: React.ComponentProps<'div'> &
-  VariantProps<typeof itemVariants> & { asChild?: boolean }) {
-  const Comp = asChild ? Slot : 'div'
+/* -------------------------------------------------------
+   FIXED: Item component wrapped with forwardRef
+------------------------------------------------------- */
+const Item = React.forwardRef<
+  HTMLElement,
+  React.ComponentProps<'div'> &
+    VariantProps<typeof itemVariants> & { asChild?: boolean }
+>(({ className, variant = 'default', size = 'default', asChild = false, ...props }, ref) => {
+  const Comp: any = asChild ? Slot : 'div'
+
   return (
     <Comp
+      ref={ref}
       data-slot="item"
       data-variant={variant}
       data-size={size}
@@ -69,7 +73,9 @@ function Item({
       {...props}
     />
   )
-}
+})
+Item.displayName = "Item"
+/* ------------------------------------------------------- */
 
 const itemMediaVariants = cva(
   'flex shrink-0 items-center justify-center gap-2 group-has-[[data-slot=item-description]]/item:translate-y-0.5 group-has-[[data-slot=item-description]]/item:self-start [&_svg]:pointer-events-none',
@@ -85,7 +91,7 @@ const itemMediaVariants = cva(
     defaultVariants: {
       variant: 'default',
     },
-  },
+  }
 )
 
 function ItemMedia({
