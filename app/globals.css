@@ -1,0 +1,127 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+@layer base {
+  :root {
+    /* updated color scheme to elegant dark and warm tones */
+    --background: 48 10% 96%;
+    --foreground: 20 14% 8%;
+    --card: 0 0% 100%;
+    --card-foreground: 20 14% 8%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 20 14% 8%;
+    --primary: 20 14% 8%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 30 40% 60%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 48 10% 87%;
+    --muted-foreground: 20 14% 40%;
+    --accent: 32 90% 55%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 48 10% 90%;
+    --input: 48 10% 90%;
+    --ring: 20 14% 8%;
+    --chart-1: 32 90% 55%;
+    --chart-2: 30 40% 60%;
+    --chart-3: 20 14% 30%;
+    --chart-4: 35 80% 50%;
+    --chart-5: 28 50% 45%;
+    --radius: 0.5rem;
+  }
+  .dark {
+    --background: 20 14% 8%;
+    --foreground: 48 10% 96%;
+    --card: 20 14% 15%;
+    --card-foreground: 48 10% 96%;
+    --popover: 20 14% 15%;
+    --popover-foreground: 48 10% 96%;
+    --primary: 48 10% 96%;
+    --primary-foreground: 20 14% 8%;
+    --secondary: 32 85% 50%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 20 14% 25%;
+    --muted-foreground: 48 10% 70%;
+    --accent: 32 90% 55%;
+    --accent-foreground: 0 0% 9%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 20 14% 20%;
+    --input: 20 14% 20%;
+    --ring: 48 10% 90%;
+    --chart-1: 32 90% 55%;
+    --chart-2: 30 80% 50%;
+    --chart-3: 35 70% 60%;
+    --chart-4: 28 65% 50%;
+    --chart-5: 32 80% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@keyframes blob {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  25% {
+    transform: translate(20px, -50px) scale(1.1);
+  }
+  50% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+  75% {
+    transform: translate(50px, 50px) scale(1.05);
+  }
+}
+
+.animate-blob {
+  animation: blob 7s infinite;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
+
+/* added smooth scroll fade-in animation for infinite scroll effect */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
